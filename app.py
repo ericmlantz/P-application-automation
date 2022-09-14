@@ -10,7 +10,11 @@ from selenium.webdriver.support.select import Select
 browser = webdriver.Chrome()
 # In the new chrome instance, go to the web address that the user inputted earlier
 browser.get(
-    'https://careers.wiley.com/en/position/associate-content-services-pune-ind-1')
+    'https://careers.aristocrat.com/au/en/apply?jobSeqNo=ARISAUR0011297EXTERNALENAU&utm_source=linkedin&utm_medium=phenom-feeds&step=1')
+# Application 1: 'https://jobs.lever.co/fast/2c4ce205-83ef-47f1-ba64-a2ab1fd9725b/apply'
+# Application 2: 'https://careers.aristocrat.com/au/en/apply?jobSeqNo=ARISAUR0011297EXTERNALENAU&utm_source=linkedin&utm_medium=phenom-feeds&step=1'
+
+
 # Upload your resume to the upload resume button.
 # browser.find_element(By.ID, "resume-upload-input").send_keys(
 #     '/Users/ericlantz/Library/Mobile Documents/com~apple~CloudDocs/GeneralAssembly/Outcomes 2/Resumes/PDFs/Eric_Lantz_Resume.pdf')
@@ -20,14 +24,41 @@ browser.get(
 # is_button_visible = browser.find_element(
 #     By.CSS_SELECTOR, "[input='first_name']").is_displayed()
 
-# personalInfo = find_element(By.)
+# ------------------------------------------------------
+# This will find the first ul element on the page, then find all the inputs inside of that 'ul' element. Each of those 'ul' elements will be added to a list named inputItemsList. In that list, the inputs will be looped over and just the name for each will be found.
 inputItemsList = []
-text_boxes = browser.find_elements(By.CSS_SELECTOR, '[type="text"]')
-for text_box in text_boxes:
-    inputItemsList.append(text_box.get_attribute("id"))
+element = browser.find_element(By.TAG_NAME, 'form')
+elements = element.find_elements(By.TAG_NAME, 'label')
+for e in elements:
+    inputItemsList.append(e.text)
+print('Input Items List:', inputItemsList)
+# ------------------------------------------------------
 
+# ------------------------------------------------------
+# Getting a list of all the input items and filtering to only the ones that have an astrik by their label, aka required items.
+# requiredList = []
+# astrik = "*"
+# for item in inputItemsList:
+#     item.replace('\n', '')
+#     if '*' in str(item):
+#         requiredList.append(item)
+# print('Required List:', str(requiredList))
+# assert 'First Name' in browser.page_source
+
+
+# full_name = 0
+# first_name = 0
+# if 'name' in inputItemsList:
+#     full_name = inputItemsList.index('name')
+# print(full_name)
+
+# assert "first" in inputItemsList
+# print("it's there!")
 
 # TRY: Doing search in your inputItemsList for a specific word and then once you have that word, (like first), have the program use the item at that spot in the list as the item to find in the DOM. So searching for less specific in list and then use the list item it finds to have the exact value to use when identifying an item to type in.
+# if 'first' in inputItemsList:
+#     print("it's there")
+
 # if 'name' in inputItemsList:
 #     browser.find_element(By.ID, 'name').send_keys('Eric Lantz')
 # if 'first_name' in inputItemsList:
